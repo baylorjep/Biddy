@@ -21,14 +21,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="#page-top">Bid</a>
+                <a class="navbar-brand fw-bold" href="index.html">Bid</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="request.html">Request a Service</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="#page-top">Request a Service</a></li>
                         <li class="nav-item"><a class="nav-link me-lg-3" href="#download">My Bids</a></li>
                     </ul>
                     <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
@@ -46,7 +46,7 @@
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3">Real time bids on your projects</h1>
+                            <h1 class="display-1 lh-1 mb-3">This will be the bids page</h1>
                             <p class="lead fw-normal text-muted mb-5">Caring for your home, made easy. </p>
                             <div class="d-flex flex-column flex-lg-row align-items-center">
                                 <a class="me-lg-3 mb-4 mb-lg-0" href="#!"><img class="app-badge" src="assets/img/google-play-badge.svg" alt="..." /></a>
@@ -85,7 +85,73 @@
                 </div>
             </div>
         </header>
-        
+        <!--Request Service Form Section-->
+        <section class="bg-gradient-primary-to-secondary" id="download">
+            <div class="container">
+                <h2>Submit a Service Request</h2>
+                <form id="serviceRequestForm" action="submit_service_request" method="POST" enctype="multipart/form-data">
+                    <!-- Customer Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your name" required>
+                        <label for="customerName">Customer Name</label>
+                        <div class="invalid-feedback">Customer name is required.</div>
+                    </div>
+                    <!-- Title of Service -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" placeholder="Enter service title" required>
+                        <label for="serviceTitle">Title of Service</label>
+                        <div class="invalid-feedback">Service title is required.</div>
+                    </div>
+                    <!-- Service Category -->
+                    <div class="form-floating mb-3">
+                        <select class="form-control" id="serviceCategory" name="serviceCategory" required>
+                            <option value="">Select a category...</option>
+                            <option value="cleaning">Home Cleaning</option>
+                            <option value="photography">Photo Shoot</option>
+                            <option value="landscaping">Landscaping</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="moving">Moving</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <label for="serviceCategory">Service Category</label>
+                        <div class="invalid-feedback">Service category is required.</div>
+                    </div>
+                    <!-- Description of Service -->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="serviceDescription" name="serviceDescription" placeholder="Enter a detailed description of the service" style="height: 10rem" required></textarea>
+                        <label for="serviceDescription">Description of Service</label>
+                        <div class="invalid-feedback">Description is required.</div>
+                    </div>
+                    <!-- Pictures (Optional) -->
+                    <div class="form-group mb-3">
+                        <label for="servicePictures">Pictures (Optional)</label>
+                        <input type="file" class="form-control" id="servicePictures" name="servicePictures[]" multiple>
+                    </div>
+                    <!-- Date of Service -->
+                    <div class="form-floating mb-3">
+                        <input type="date" class="form-control" id="serviceDate" name="serviceDate" placeholder="Select a date" required>
+                        <label for="serviceDate">Date of Service</label>
+                        <div class="invalid-feedback">Date of service is required.</div>
+                    </div>
+                    <!-- Expected Price Range -->
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="priceRange" name="priceRange" placeholder="Enter expected price range" required>
+                        <label for="priceRange">Expected Price Range</label>
+                        <div class="invalid-feedback">Price range is required.</div>
+                    </div>
+                    <!-- Additional Comments (Optional) -->
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="additionalComments" name="additionalComments" placeholder="Enter any additional comments" style="height: 5rem"></textarea>
+                        <label for="additionalComments">Additional Comments (Optional)</label>
+                    </div>
+                    <!-- Submit Button -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </section>
         
         <!-- App badge section-->
         <section class="bg-gradient-primary-to-secondary" id="download">
@@ -169,6 +235,9 @@
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
                                     <div class="fw-bolder">Account Created!</div>
+                                    To activate this form, sign up at
+                                    <br />
+                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -194,6 +263,3 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
-
-
-
