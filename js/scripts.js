@@ -30,5 +30,16 @@ window.addEventListener('DOMContentLoaded', event => {
             }
         });
     });
+    // JavaScript function to add dollar sign to input value
+    function addDollarSign(input) {
+        // Remove any existing dollar signs and non-numeric characters
+        input.value = input.value.replace(/[^\d.]/g, '');
+
+        // Add dollar sign at the beginning of the input value
+        if (input.value !== '' && !input.value.startsWith('$')) {
+            input.value = '$' + input.value;
+        }
+    }
+
 
 });
