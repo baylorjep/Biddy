@@ -11165,3 +11165,11 @@ footer a:hover, footer a:active, footer a:focus {
   list-style-type: none;
 }
 
+.RequestPageHeader {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
