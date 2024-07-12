@@ -33,7 +33,7 @@
                     </ul>
                     <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                         <span class="d-flex align-items-center">
-                            <span class="small">Sign In</span>
+                            <span class="small">My Account</span>
                         </span>
                     </button>
                 </div>
@@ -41,7 +41,24 @@
         </nav>
         <!-- Mashead header-->
         <header class="masthead">
-            
+            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                You Have 4 New Jobs to Bid On
+                <div class="details">
+                    <p>Details about new jobs...</p>
+                </div>
+            </div>
+            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                3 of Your Bids Have Been Accepted!
+                <div class="details">
+                    <p>Details about accepted bids...</p>
+                </div>
+            </div>
+            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                You Have 4 Jobs Left to Complete
+                <div class="details">
+                    <p>Details about jobs left...</p>
+                </div>
+            </div>
         </header>
     
         <!-- Footer-->

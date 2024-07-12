@@ -11173,3 +11173,30 @@ footer a:hover, footer a:active, footer a:focus {
   margin: 0;
 }
 
+.BusinessPageDashboard {
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px;
+  background: linear-gradient(45deg, #2937f0, #9f1ae2);
+  margin: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white;
+  transition: background 0.3s;
+  cursor: pointer; /* Change cursor to pointer */
+}
+.BusinessPageDashboard:hover {
+  background: linear-gradient(45deg, #1e2bc0, #7f15b7);
+}
+.expanded {
+  height: auto;
+  transition: height 0.3s;
+}
+.details {
+  display: none; /* Hidden by default */
+  padding: 10px;
+  background: #f0f0f0;
+  color: #333;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
