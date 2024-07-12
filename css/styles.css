@@ -11174,7 +11174,7 @@ footer a:hover, footer a:active, footer a:focus {
 }
 
 .BusinessPageDashboard {
-  border: 2px solid #000;
+  border: 2px solid white;
   border-radius: 10px;
   padding: 10px;
   background: linear-gradient(45deg, #2937f0, #9f1ae2);
@@ -11200,3 +11200,25 @@ footer a:hover, footer a:active, footer a:focus {
   margin-top: 10px;
 }
 
+.business-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #d3d3d3;
+  border-radius: 5px;
+}
+
+.business-name {
+  margin-left: 10px;
+  font-size: medium;
+  padding:30px;
+}
+
+.business-price {
+  margin-right: 10px;
+  background: linear-gradient(45deg, #1e2bc0, #7f15b7);
+  border-radius: 10px;
+  padding: 30px;
+  color: white;
+  font-size: medium;
+}
