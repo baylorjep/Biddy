@@ -11192,7 +11192,6 @@ footer a:hover, footer a:active, footer a:focus {
   transition: height 0.3s;
 }
 .details {
-  display: none; /* Hidden by default */
   padding: 10px;
   background: #f0f0f0;
   color: #333;
