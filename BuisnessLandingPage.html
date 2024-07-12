@@ -18,6 +18,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <!--Link to JS-->
         <script src="js/scripts.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -43,22 +44,34 @@
         </nav>
         <!-- Mashead header-->
         <header class="masthead">
-            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
-                You Have 4 New Jobs to Bid On
-                <div class="details">
-                    <p>Details about new jobs...</p>
-                </div>
-            </div>
-            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
-                3 of Your Bids Have Been Accepted!
-                <div class="details">
-                    <p>Details about accepted bids...</p>
-                </div>
-            </div>
-            <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
-                You Have 4 Jobs Left to Complete
-                <div class="details">
-                    <p>Details about jobs left...</p>
+            <h1 class="RequestPageHeader">Greetings Baylor Jeppsen LLC</h1>
+            <div class="container" style="margin-top: 20px;">
+                <div class="row">
+                    <!-- Graph Container -->
+                    <div class="col-md-6">
+                        <div id="myGraph" style="height: 600px;"></div>
+                    </div>
+                    <!-- Dashboard Container -->
+                    <div class="col-md-6">
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            You Have 4 New Jobs to Bid On
+                            <div class="details">
+                                <p>Details about new jobs...</p>
+                            </div>
+                        </div>
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            3 of Your Bids Have Been Accepted!
+                            <div class="details">
+                                <p>Details about accepted bids...</p>
+                            </div>
+                        </div>
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            You Have 4 Jobs Left to Complete
+                            <div class="details">
+                                <p>Details about jobs left...</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
