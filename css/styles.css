@@ -11204,21 +11204,41 @@ footer a:hover, footer a:active, footer a:focus {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: #d3d3d3;
+  background-color: white;
   border-radius: 5px;
 }
 
 .business-name {
   margin-left: 10px;
-  font-size: medium;
-  padding:30px;
+  font-size: large;
+  padding:5px;
 }
 
 .business-price {
   margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background: linear-gradient(45deg, #1e2bc0, #7f15b7);
   border-radius: 10px;
-  padding: 30px;
+  padding: 10px 40px;
   color: white;
-  font-size: medium;
+  font-size: large;
 }
+.business-price:hover {
+  background: linear-gradient(45deg, #1e2bc0, #7f15b7);
+}
+
+.business-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.business-name {
+  font-weight: bold;
+}
+
+.business-description {
+  color: gray;
+  margin-left: 10px;
+}
+
