@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <script src="js/scripts.js"></script>
         <title>Biddy</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
@@ -17,12 +16,15 @@
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <!--Link to JS-->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="js/scripts.js" defer></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="index.html">Bid</a>
+                <a class="navbar-brand fw-bold" href="#page-top">Bid</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="bi-list"></i>
@@ -30,11 +32,11 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
                         <li class="nav-item"><a class="nav-link me-lg-3" href="request.html">Request a Service</a></li>
-                        <li class="nav-item"><a class="nav-link me-lg-3" href="#page-top">My Bids</a></li>
+                        <li class="nav-item"><a class="nav-link me-lg-3" href="BidLandingPage.html">My Bids</a></li>
                     </ul>
                     <button class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
                         <span class="d-flex align-items-center">
-                            <span class="small">Sign In</span>
+                            <span class="small">My Account</span>
                         </span>
                     </button>
                 </div>
@@ -42,28 +44,34 @@
         </nav>
         <!-- Mashead header-->
         <header class="masthead">
-            <div class="container px-5">
-                <body>
-                    <!--The div element for the map -->
-                    <div id="map"></div>
-                
-                    <!-- prettier-ignore -->
-                    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
-                        ({key: "", v: "weekly"});</script>
-                  </body>
-                <div class="business-container">
-                    <div class="business-info">
-                        <div class="business-name">Business 1</div>
-                        <div class="business-description">This is a brief description of Business 1.</div>
+            <h1 class="RequestPageHeader">Greetings Baylor!</h1>
+            <div class="container" style="margin-top: 20px;">
+                <div class="row">
+                    <!-- Dashboard Container -->
+                    <div class="col-md-6">
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            You Have 4 New Jobs to Bid On
+                            <div class="details">
+                                <p>Details about new jobs...</p>
+                            </div>
+                        </div>
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            3 of Your Bids Have Been Accepted!
+                            <div class="details">
+                                <p>Details about accepted bids...</p>
+                            </div>
+                        </div>
+                        <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
+                            You Have 4 Jobs Left to Complete
+                            <div class="details">
+                                <p>Details about jobs left...</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="business-price">$100</div>
                 </div>
-                
-
-                
-                
             </div>
         </header>
+    
         <!-- Footer-->
         <footer class="bg-black text-center py-5">
             <div class="container px-5">
@@ -123,7 +131,7 @@
                                 <label for="category">Category</label>
                                 <div class="invalid-feedback" data-sb-feedback="category:required">This field is required</div>
                             </div>
-                           
+                            
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
@@ -131,9 +139,6 @@
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
                                     <div class="fw-bolder">Account Created!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -159,3 +164,6 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
 </html>
+
+
+
