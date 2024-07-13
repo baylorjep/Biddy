@@ -40,12 +40,7 @@ window.addEventListener('DOMContentLoaded', event => {
             input.value = '$' + input.value;
         }
     }
-    function toggleDetails(element) {
-        const details = element.querySelector('.details');
-        details.style.display = details.style.display === 'block' ? 'none' : 'block';
-    }
-
-
+    
     const ctx = document.getElementById('myGraph').getContext('2d');
     const myChart = new Chart(ctx, {
         type: 'bar',

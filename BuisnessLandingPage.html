@@ -166,6 +166,12 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            function toggleDetails(element) {
+                const details = element.querySelector('.details');
+                details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            }
+            </script>
     </body>
 </html>
 
