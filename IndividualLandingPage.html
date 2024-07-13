@@ -72,7 +72,7 @@
             <div class="col-md-6">
                 <div class="BusinessPageDashboard" onclick="toggleDetails(this)">Need Something Else Done?
                     <div class="details">
-                        <form id="serviceRequestForm" action="submit_service_request" method="POST" enctype="multipart/form-data">
+                        <form id="serviceRequestForm" action="submit_service_request" method="POST" enctype="multipart/form-data" onClick="event.stopPropagation()">
                             <!-- Customer Name -->
                             <div class="form-floating mb-3">
                                 <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your name" required>
@@ -232,9 +232,19 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
         <script>
             function toggleDetails(element) {
-                const details = element.querySelector('.details');
-                details.style.display = details.style.display === 'block' ? 'none' : 'block';
-            }
+            const details = element.querySelector('.details');
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+            }            
+
+        // Optional: Add an event listener to close details when clicking outside
+            document.addEventListener('click', function(event) {
+        const details = document.querySelector('.details');
+        const dashboard = document.querySelector('.BusinessPageDashboard');
+    
+        if (details && !dashboard.contains(event.target)) {
+            details.style.display = 'none';
+    }
+});
             </script>
     </body>
 </html>
