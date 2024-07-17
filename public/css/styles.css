@@ -640,6 +640,8 @@ progress {
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
   margin-left: auto;
+  max-width: 1200px;
+  padding: 0 15px;
 }
 
 @media (min-width: 576px) {
@@ -11263,4 +11265,71 @@ footer a:hover, footer a:active, footer a:focus {
 #map {
   height: 100%;
 }
+
+.masthead {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/img/Indexbackground.jpg'); /* Ensure the path is correct */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.masthead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); /* Optional overlay for better text visibility */
+  z-index: 1;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  position: relative;
+  z-index: 2;
+  color:white;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.search-input {
+  width: 700px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 1.5rem;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+
+.search-input:focus {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.search-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 1.5rem;
+  background-color: #232fcc;
+  color: white;
+  cursor: pointer;
+  width: 100px;
+}
+
+.search-button:hover {
+  background-color: #2937f0;
+} 
+
 
