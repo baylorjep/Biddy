@@ -107,6 +107,20 @@
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
+                            <!-- Password input -->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="password" type="password" required oninput="checkPasswordStrength()" />
+                                <label for="password">Password</label>
+                                <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
+                                <div class="invalid-feedback" id="strength-feedback" style="display: none;">Password must be at least 8 characters, include uppercase, lowercase, number, and special character.</div>
+                            </div>
+                            <!-- Confirm Password input -->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="confirm-password" type="password" required oninput="checkPasswordMatch()" />
+                                <label for="confirm-password">Confirm Password</label>
+                                <div class="invalid-feedback" data-sb-feedback="confirm-password:required">Please confirm your password.</div>
+                                <div class="invalid-feedback" id="password-match-feedback">Passwords do not match.</div>
+                            </div>
                             <!-- Phone number input-->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
@@ -157,5 +171,43 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script>
+            function checkPasswordMatch() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                const feedback = document.getElementById('password-match-feedback');
+        
+                if (password !== confirmPassword) {
+                    feedback.style.display = 'block';
+                    document.getElementById('confirm-password').classList.add('is-invalid');
+                } else {
+                    feedback.style.display = 'none';
+                    document.getElementById('confirm-password').classList.remove('is-invalid');
+                }
+            }
+        
+            function checkPasswordStrength() {
+                const password = document.getElementById('password').value;
+                const feedback = document.getElementById('strength-feedback');
+        
+                const strengthCriteria = [
+                    /[a-z]/,           // lowercase
+                    /[A-Z]/,           // uppercase
+                    /[0-9]/,           // numbers
+                    /[!@#$%^&*(),.?":{}|<>]/, // special characters
+                    /.{8,}/            // minimum length
+                ];
+        
+                const isStrong = strengthCriteria.every(criteria => criteria.test(password));
+        
+                if (!isStrong) {
+                    feedback.style.display = 'block';
+                    document.getElementById('password').classList.add('is-invalid');
+                } else {
+                    feedback.style.display = 'none';
+                    document.getElementById('password').classList.remove('is-invalid');
+                }
+            }
+        </script>
     </body>
 </html>
