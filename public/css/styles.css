@@ -11266,7 +11266,7 @@ footer a:hover, footer a:active, footer a:focus {
   height: 100%;
 }
 
-.masthead {
+.masthead-index {
   position: relative;
   height: 100vh;
   display: flex;
@@ -11278,7 +11278,7 @@ footer a:hover, footer a:active, footer a:focus {
   background-repeat: no-repeat;
 }
 
-.masthead::before {
+.masthead-index::before {
   content: '';
   position: absolute;
   top: 0;
