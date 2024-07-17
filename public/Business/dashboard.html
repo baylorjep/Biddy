@@ -54,7 +54,7 @@
                 <!-- Dashboard Container -->
                 <div class="col-md-6">
                     <div class="BusinessPageDashboard" onclick="toggleDetails(this)">
-                        You Have 4 New Jobs to Bid On
+                        <span id="newJobsCount">Loading...</span> New Jobs to Bid On
                         <div class="details">
                             <table id="serviceRequestsTable">
                                 <thead>
@@ -164,6 +164,7 @@
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.getElementById('serviceRequestsTable').getElementsByTagName('tbody')[0];
+                    tableBody.innerHTML = ''; // Clear existing rows
                     data.forEach(request => {
                         const row = tableBody.insertRow();
                         row.insertCell(0).textContent = request.customername; // Adjust based on your DB column names
@@ -174,6 +175,11 @@
                         row.insertCell(5).textContent = request.price;
                         row.insertCell(6).textContent = request.comments;
                     });
+
+                    // Update the number of new jobs dynamically
+                    const newJobsCount = data.length;
+                    const newJobsCountElement = document.getElementById('newJobsCount');
+                    newJobsCountElement.textContent = newJobsCount;
                 })
                 .catch(error => console.error('Error fetching service requests:', error));
         });
@@ -185,4 +191,3 @@
     </script>
 </body>
 </html>
-
