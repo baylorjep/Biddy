@@ -11302,10 +11302,12 @@ footer a:hover, footer a:active, footer a:focus {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  width: 100%;
 }
 
 .search-input {
-  width: 700px;
+  width: 100%;  /* Use 100% width to make it dynamic */
+  max-width: 800px; /* Optional: Limit maximum width */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 1.5rem;
@@ -11317,6 +11319,7 @@ footer a:hover, footer a:active, footer a:focus {
 .search-input:focus {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+
 
 .search-button {
   padding: 10px 15px;
