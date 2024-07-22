@@ -212,52 +212,35 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script>
-            function checkPasswordMatch() {
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirm-password').value;
-                const feedback = document.getElementById('password-match-feedback');
-        
-                if (password !== confirmPassword) {
-                    feedback.style.display = 'block';
-                    document.getElementById('confirm-password').classList.add('is-invalid');
-                } else {
-                    feedback.style.display = 'none';
-                    document.getElementById('confirm-password').classList.remove('is-invalid');
-                }
-            }
-        
-            function checkPasswordStrength() {
-                const password = document.getElementById('password').value;
-                const feedback = document.getElementById('strength-feedback');
-        
-                const strengthCriteria = [
-                    /[a-z]/,           // lowercase
-                    /[A-Z]/,           // uppercase
-                    /[0-9]/,           // numbers
-                    /[!@#$%^&*(),.?":{}|<>]/, // special characters
-                    /.{8,}/            // minimum length
-                ];
-        
-                const isStrong = strengthCriteria.every(criteria => criteria.test(password));
-        
-                if (!isStrong) {
-                    feedback.style.display = 'block';
-                    document.getElementById('password').classList.add('is-invalid');
-                } else {
-                    feedback.style.display = 'none';
-                    document.getElementById('password').classList.remove('is-invalid');
-                }
-            }
-        </script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- SB Forms JS-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('/fetch_service_requests')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById('serviceRequestsTable').getElementsByTagName('tbody')[0];
+                    data.forEach(request => {
+                        const row = tableBody.insertRow();
+                        row.insertCell(0).textContent = request.customername; // Adjust based on your DB column names
+                        row.insertCell(1).textContent = request.title;
+                        row.insertCell(2).textContent = request.category;
+                        row.insertCell(3).textContent = request.description;
+                        row.insertCell(4).textContent = new Date(request.date).toLocaleDateString(); // Format date if needed
+                        row.insertCell(5).textContent = request.price;
+                        row.insertCell(6).textContent = request.comments;
+                    });
+                })
+                .catch(error => console.error('Error fetching service requests:', error));
+        });
+
+        function toggleDetails(element) {
+            const details = element.querySelector('.details');
+            details.style.display = details.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
     </body>
 </html>
