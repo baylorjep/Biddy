@@ -14,7 +14,7 @@ const config = {
   database: 'bidi',
   options: {
     encrypt: true, // Use encryption
-    enableArithAbort: true // Needed for Azure compatibility
+    enableArithAbort: true 
   }
 };
 
