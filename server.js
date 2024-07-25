@@ -1,17 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql2/promise'); // Use promise-based MySQL
+const sql = require('mssql');
 
 // Set up Express app
 const app = express();
 const port = 3000;
 
-// MySQL configuration for Google Cloud SQL
+// SQL Server client configuration for Google Cloud SQL
 const config = {
-  host: '34.19.32.205', // Your Cloud SQL IP address
   user: 'sqlserver',
   password: 'wawawa',
-  database: 'bidi'
+  server: '34.19.32.205', // You can use 'localhost\\instance' to connect to named instance
+  database: 'bidi',
+  options: {
+    encrypt: true, // Use encryption
+    enableArithAbort: true // Needed for Azure compatibility
+  }
 };
 
 // Middleware to parse incoming form data
@@ -20,10 +24,6 @@ app.use(bodyParser.json());
 
 // Serve static files from the "public" directory
 app.use(express.static('public'));
-
-// CORS configuration
-const cors = require('cors');
-app.use(cors());
 
 // Endpoint to handle form submissions
 app.post('/submit_service_request', async (req, res) => {
@@ -39,21 +39,21 @@ app.post('/submit_service_request', async (req, res) => {
 
   const query = `
     INSERT INTO request (custid, title, category, description, date, price, comments)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    VALUES (@customerName, @serviceTitle, @serviceCategory, @serviceDescription, @serviceDate, @priceRange, @additionalComments)
   `;
 
   try {
-    const connection = await mysql.createConnection(config);
-    await connection.execute(query, [
-      customerName,
-      serviceTitle,
-      serviceCategory,
-      serviceDescription,
-      serviceDate,
-      priceRange,
-      additionalComments
-    ]);
-    await connection.end();
+    let pool = await sql.connect(config);
+    await pool.request()
+      .input('customerName', sql.NVarChar, customerName)
+      .input('serviceTitle', sql.NVarChar, serviceTitle)
+      .input('serviceCategory', sql.NVarChar, serviceCategory)
+      .input('serviceDescription', sql.NVarChar, serviceDescription)
+      .input('serviceDate', sql.Date, serviceDate)
+      .input('priceRange', sql.NVarChar, priceRange)
+      .input('additionalComments', sql.NVarChar, additionalComments)
+      .query(query);
+
     res.status(200).send('Service request submitted successfully.');
   } catch (err) {
     console.error('Database Error:', err.message);
@@ -67,10 +67,9 @@ app.get('/fetch_service_requests', async (req, res) => {
   const query = 'SELECT * FROM request';
 
   try {
-    const connection = await mysql.createConnection(config);
-    const [rows] = await connection.execute(query);
-    await connection.end();
-    res.json(rows); // Send the data as JSON
+    let pool = await sql.connect(config);
+    let result = await pool.request().query(query);
+    res.json(result.recordset); // Send the data as JSON
   } catch (err) {
     console.error('Database Error:', err.message);
     console.error(err.stack);
