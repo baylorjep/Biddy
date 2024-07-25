@@ -99,6 +99,7 @@
                     </select>
                 <label for="category">Category</label>
                 <div class="invalid-feedback" data-sb-feedback="category:required">This field is required</div>
+                <button type="submit" class="btn btn-secondary-white">Submit Request</button>
                 </div>
             </form>
 
@@ -235,5 +236,44 @@
             details.style.display = details.style.display === 'block' ? 'none' : 'block';
         }
     </script>
+
+<script>
+    function checkPasswordMatch() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const feedback = document.getElementById('password-match-feedback');
+
+        if (password !== confirmPassword) {
+            feedback.style.display = 'block';
+            document.getElementById('confirm-password').classList.add('is-invalid');
+        } else {
+            feedback.style.display = 'none';
+            document.getElementById('confirm-password').classList.remove('is-invalid');
+        }
+    }
+
+    function checkPasswordStrength() {
+        const password = document.getElementById('password').value;
+        const feedback = document.getElementById('strength-feedback');
+
+        const strengthCriteria = [
+            /[a-z]/,           // lowercase
+            /[A-Z]/,           // uppercase
+            /[0-9]/,           // numbers
+            /[!@#$%^&*(),.?":{}|<>]/, // special characters
+            /.{8,}/            // minimum length
+        ];
+
+        const isStrong = strengthCriteria.every(criteria => criteria.test(password));
+
+        if (!isStrong) {
+            feedback.style.display = 'block';
+            document.getElementById('password').classList.add('is-invalid');
+        } else {
+            feedback.style.display = 'none';
+            document.getElementById('password').classList.remove('is-invalid');
+        }
+    }
+</script>
     </body>
 </html>
