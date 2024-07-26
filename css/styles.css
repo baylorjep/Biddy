@@ -11226,6 +11226,7 @@ footer a:hover, footer a:active, footer a:focus {
   padding: 10px;
   background-color: white;
   border-radius: 5px;
+  border-bottom: gray 1px;
 }
 
 .business-name {
