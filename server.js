@@ -1,22 +1,39 @@
+// PostgreSQL client configuration
+//const client = new Client({
+  //user: 'postgres',
+  //host: 'localhost',
+  //database: 'biddy',
+  //password: 'sidewinders',
+  //port: 5432,
+//});
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const sql = require('mssql');
+const { Client } = require('pg');
 
 // Set up Express app
 const app = express();
 const port = 3000;
 
-// SQL Server client configuration for Google Cloud SQL
-const config = {
-  user: 'sqlserver',
-  password: 'wawawa',
-  server: '34.19.32.205', // You can use 'localhost\\instance' to connect to named instance
-  database: 'bidi',
-  options: {
-    encrypt: true, // Use encryption
-    enableArithAbort: true // Needed for Azure compatibility
+// AWS RDS PostgreSQL client configuration
+const client = new Client({
+  user: 'postgres',
+  host: 'bidi-instance.c7uki0448fx9.us-east-1.rds.amazonaws.com',
+  database: 'bidi_db', // Ensure this is the correct database name
+  password: 'Pampara1',
+  port: 5432, // Default PostgreSQL port
+  ssl: {
+    rejectUnauthorized: false // Accept self-signed certificates
   }
-};
+});
+
+client.connect((err) => {
+  if (err) {
+    console.error('Connection Error:', err.stack);
+  } else {
+    console.log('Connected to the AWS RDS database.');
+  }
+});
 
 // Middleware to parse incoming form data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,7 +43,8 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Endpoint to handle form submissions
-app.post('/submit_service_request', async (req, res) => {
+app.post('/submit_service_request', (req, res) => {
+  console.log('Received request body:', req.body);
   const {
     customerName,
     serviceTitle,
@@ -38,43 +56,49 @@ app.post('/submit_service_request', async (req, res) => {
   } = req.body;
 
   const query = `
-    INSERT INTO request (custid, title, category, description, date, price, comments)
-    VALUES (@customerName, @serviceTitle, @serviceCategory, @serviceDescription, @serviceDate, @priceRange, @additionalComments)
+    INSERT INTO request (custname, title, category, description, date, price, comments)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
   `;
 
-  try {
-    let pool = await sql.connect(config);
-    await pool.request()
-      .input('customerName', sql.NVarChar, customerName)
-      .input('serviceTitle', sql.NVarChar, serviceTitle)
-      .input('serviceCategory', sql.NVarChar, serviceCategory)
-      .input('serviceDescription', sql.NVarChar, serviceDescription)
-      .input('serviceDate', sql.Date, serviceDate)
-      .input('priceRange', sql.NVarChar, priceRange)
-      .input('additionalComments', sql.NVarChar, additionalComments)
-      .query(query);
-
-    res.status(200).send('Service request submitted successfully.');
-  } catch (err) {
-    console.error('Database Error:', err.message);
-    console.error(err.stack);
-    res.status(500).send('Error saving data to the database.');
-  }
+  client.query(
+    query,
+    [
+      customerName,
+      serviceTitle,
+      serviceCategory,
+      serviceDescription,
+      serviceDate,
+      priceRange,
+      additionalComments,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error('Database Error:', err.message);
+        console.error(err.stack);
+        res.status(500).send('Error saving data to the database.');
+      } else {
+        console.log('Database Insert Result:', result);
+        res.status(200).send('Service request submitted successfully.');
+      }
+    }
+  );
 });
 
 // Endpoint for fetching request data
-app.get('/fetch_service_requests', async (req, res) => {
+app.get('/fetch_service_requests', (req, res) => {
+  console.log('Fetching service requests...');
   const query = 'SELECT * FROM request';
 
-  try {
-    let pool = await sql.connect(config);
-    let result = await pool.request().query(query);
-    res.json(result.recordset); // Send the data as JSON
-  } catch (err) {
-    console.error('Database Error:', err.message);
-    console.error(err.stack);
-    res.status(500).send('Error fetching data from the database.');
-  }
+  client.query(query, (err, result) => {
+    if (err) {
+      console.error('Database Error:', err.message);
+      console.error(err.stack);
+      res.status(500).send('Error fetching data from the database.');
+    } else {
+      console.log('Fetch Result:', result.rows);
+      res.json(result.rows); // Send the data as JSON
+    }
+  });
 });
 
 app.listen(port, () => {
