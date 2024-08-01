@@ -43,78 +43,68 @@
         </nav>
         <!-- Mashead header-->
         <header class="masthead">
-            <div class="container px-5">
-                <div class="row gx-5 align-items-center">
-                    <div class="col-lg-6">
-                        <!-- Mashead text and app badges-->
-                        <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="RequestPageHeader">What do you want done today?</h1>
-                            
-                        </div>
+            <div class="container px-5 d-flex align-items-center justify-content-center">
+                <div class="col-lg-6">
+                    <div class="mb-5 mb-lg-0 text-center">
+                        <h1 class="RequestPageHeader">What do you want done today?</h1>
                     </div>
+                    <form id="serviceRequestForm" action="/submit_service_request" method="POST">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your name" required>
+                            <label for="customerName">Customer Name</label>
+                            <div class="invalid-feedback">Customer name is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" placeholder="Enter service title" required>
+                            <label for="serviceTitle">Title of Service</label>
+                            <div class="invalid-feedback">Service title is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" required>
+                            <label for="location">Your Location</label>
+                            <div class="invalid-feedback">A location is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="serviceCategory" name="serviceCategory" required>
+                                <option value="">Select a category...</option>
+                                <option value="cleaning">Home Cleaning</option>
+                                <option value="photography">Photo Shoot</option>
+                                <option value="landscaping">Landscaping</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="electrical">Electrical</option>
+                                <option value="moving">Moving</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="serviceCategory">Service Category</label>
+                            <div class="invalid-feedback">Service category is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="serviceDescription" name="serviceDescription" placeholder="Enter a detailed description of the service" style="height: 10rem" required></textarea>
+                            <label for="serviceDescription">Description of Service</label>
+                            <div class="invalid-feedback">Description is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="date" class="form-control" id="serviceDate" name="serviceDate" placeholder="Select a date" required>
+                            <label for="serviceDate">Date of Service</label>
+                            <div class="invalid-feedback">Date of service is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="priceRange" name="priceRange" placeholder="Enter expected price range" required>
+                            <label for="priceRange">Expected Price Range</label>
+                            <div class="invalid-feedback">Price range is required.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="additionalComments" name="additionalComments" placeholder="Enter any additional comments" style="height: 5rem"></textarea>
+                            <label for="additionalComments">Additional Comments (Optional)</label>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-secondary-white">Submit Request</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </header>
-        <!--Request Service Form Section-->
-        <section class="bg-gradient-primary-to-secondary" id="download">
-        <div class="container">
-            <h2 style="color: white;">Submit a Service Request</h2>
-            <form id="serviceRequestForm" action="/submit_service_request" method="POST">
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your name" required>
-                <label for="customerName">Customer Name</label>
-                <div class="invalid-feedback">Customer name is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" placeholder="Enter service title" required>
-                <label for="serviceTitle">Title of Service</label>
-                <div class="invalid-feedback">Service title is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" placeholder="Enter service title" required>
-                <label for="serviceTitle">Your Location</label>
-                <div class="invalid-feedback">A location is requried.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <select class="form-control" id="serviceCategory" name="serviceCategory" required>
-                    <option value="">Select a category...</option>
-                    <option value="cleaning">Home Cleaning</option>
-                    <option value="photography">Photo Shoot</option>
-                    <option value="landscaping">Landscaping</option>
-                    <option value="plumbing">Plumbing</option>
-                    <option value="electrical">Electrical</option>
-                    <option value="moving">Moving</option>
-                    <option value="other">Other</option>
-                </select>
-                <label for="serviceCategory">Service Category</label>
-                <div class="invalid-feedback">Service category is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <textarea class="form-control" id="serviceDescription" name="serviceDescription" placeholder="Enter a detailed description of the service" style="height: 10rem" required></textarea>
-                <label for="serviceDescription">Description of Service</label>
-                <div class="invalid-feedback">Description is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <input type="date" class="form-control" id="serviceDate" name="serviceDate" placeholder="Select a date" required>
-                <label for="serviceDate">Date of Service</label>
-                <div class="invalid-feedback">Date of service is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="priceRange" name="priceRange" placeholder="Enter expected price range" required>
-                <label for="priceRange">Expected Price Range</label>
-                <div class="invalid-feedback">Price range is required.</div>
-                </div>
-                <div class="form-floating mb-3">
-                <textarea class="form-control" id="additionalComments" name="additionalComments" placeholder="Enter any additional comments" style="height: 5rem"></textarea>
-                <label for="additionalComments">Additional Comments (Optional)</label>
-                </div>
-                <div class="d-grid">
-                <button type="submit" class="btn btn-secondary-white">Submit Request</button>
-                </div>
-            </form>
-
-        </div>
-    </section>
+        
         
         <!-- Footer-->
         <footer class="bg-black text-center py-5">

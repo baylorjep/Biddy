@@ -11191,6 +11191,11 @@ footer a:hover, footer a:active, footer a:focus {
   justify-content: center;
   align-items: center;
   margin: 0;
+  margin-bottom: 10px;
+}
+
+.serviceRequestForm {
+  margin-top: 10px;
 }
 
 .BusinessPageDashboard {
