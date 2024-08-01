@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <script src="js/scripts.js"></script>
-        <title>Biddy</title>
+        <title>Bidi</title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -48,7 +48,6 @@
                 <body>
                     <h2>Photography Shoot Bid</h2>
                     <!--The div element for the map -->
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97434.37648158059!2d-111.7213090485104!3d40.25743668670892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x874d9271930bf1bf%3A0x1d90f12600b556ef!2sProvo%2C%20UT!5e0!3m2!1sen!2sus!4v1720638188026!5m2!1sen!2sus" width="100%" height="400px" Margin="0" Padding="0" form-floating mb-3" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                   </body>
                 <div class="business-container">
                     <div class="business-info">
@@ -124,19 +123,13 @@
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
                         <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Name input-->
+                            <!--   input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <input class="form-control" id="username" type="text" placeholder="Enter your username..." data-sb-validations="required" />
+                                <label for="name">Username</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Username is required.</div>
                             </div>
-                            <!-- Email address input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label for="email">Email address</label>
-                                <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
-                            </div>
+    
                             <!-- Password input -->
                             <div class="form-floating mb-3">
                                 <input class="form-control" id="password" type="password" placeholder="Password" required oninput="checkPasswordStrength()" />
@@ -144,40 +137,17 @@
                                 <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
                                 <div class="invalid-feedback" id="strength-feedback" style="display: none;">Password must be at least 8 characters, include uppercase, lowercase, number, and special character.</div>
                             </div>
-                            <!-- Confirm Password input -->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="confirm-password" type="password" placeholder="Confirm Password" required oninput="checkPasswordMatch()" />
-                                <label for="confirm-password">Confirm Password</label>
-                                <div class="invalid-feedback" data-sb-feedback="confirm-password:required">Please confirm your password.</div>
-                                <div class="invalid-feedback" id="password-match-feedback">Passwords do not match.</div>
+                            <div id="CreateAccount">
+                                <h6 class="text-center mb-3" id="createAccount" type="text">New? Create an Account <a href="createaccount.html">Here.</a></h6>
                             </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
-                            <!-- Category dropdown-->
-                            <div class="form-floating mb-3">
-                                <select class="form-control" id="category" data-sb-validations="required">
-                                    <option value="">I am a...</option>
-                                    <option value="general">Business</option>
-                                    <option value="support">Individual</option>
-                                </select>
-                                <label for="category">Category</label>
-                                <div class="invalid-feedback" data-sb-feedback="category:required">This field is required</div>
-                            </div>
-                           
+
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
                             <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3">
-                                    <div class="fw-bolder">Account Created!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    <div class="fw-bolder">Logged In!</div>
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -186,7 +156,7 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Sign In</button></div>
                         </form>
                     </div>
                 </div>
