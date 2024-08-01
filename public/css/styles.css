@@ -11222,45 +11222,117 @@ footer a:hover, footer a:active, footer a:focus {
 
 .business-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  position: relative;
+  height: 100px; /* Smaller height initially */
+  overflow: hidden; /* Hide overflow content */
+  transition: height 0.3s ease, padding 0.3s ease; /* Smooth transition for height and padding */
+  border-radius: 10px;
+}
+
+.business-container.active {
+  height: auto; /* Expand to fit content */
+  padding: 10px 10px 60px; /* Adjust padding to accommodate the expanded content */
+}
+
+.business-container:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
 }
 
 .business-name {
   margin-left: 10px;
   font-size: large;
-  padding:5px;
+  padding: 5px;
+  margin-top: 8px;
 }
 
 .business-price {
-  margin-right: 10px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  font-size: large;
+  color: white;
   background: linear-gradient(45deg, #1e2bc0, #7f15b7);
   border-radius: 10px;
   padding: 10px 40px;
-  color: white;
-  font-size: large;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+  position: absolute; /* Positioning for alignment */
+  top: 10px; /* Align to the top right */
+  right: 10px; /* Align to the right */
 }
-.business-price:hover {
-  background: linear-gradient(45deg, #1e2bc0, #7f15b7);
+
+.business-actions {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 10px; /* Space from the bottom */
+  right: 10px; /* Space from the right */
+  gap: 10px;
+}
+
+.btn-approve, .btn-deny {
+  background-color: #28a745; /* Green color for the button */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.btn-approve:hover {
+  background-color: #218838; /* Darker shade of green on hover */
+}
+
+.btn-deny {
+  background-color: #dc3545; /* Danger button color */
+}
+
+.btn-deny:hover {
+  background-color: #c82333; /* Darker shade on hover */
 }
 
 .business-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .business-name {
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .business-description {
-  color: gray;
-  margin-left: 10px;
+  overflow: hidden; /* Hide overflow initially */
+  transition: max-height 0.3s ease; /* Smooth transition for max-height */
 }
+
+.short-description {
+  display: block; /* Ensures it is always displayed */
+  font-weight: normal; /* Optional: adjust as needed */
+  color: #555; /* Optional: a lighter color for less emphasis */
+  margin-top: 5px;
+}
+
+.full-description {
+  display: none; /* Hidden by default */
+  font-weight: normal; /* Optional: adjust as needed */
+  color: #333; /* Same as general description color */
+  margin-top: 30px; /* Optional: add some spacing */
+  line-height: 1.5; /* Optional: improve readability */
+  margin: 20px;
+}
+
 
 #map {
   height: 100%;
@@ -11334,5 +11406,21 @@ footer a:hover, footer a:active, footer a:focus {
 .search-button:hover {
   background-color: #2937f0;
 } 
+
+.description-button {
+  background-color: transparent;
+  border: none;
+  color: #007bff;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+  display: inline; /* Inline with the text */
+}
+
+.description-button:hover {
+  color: #0056b3;
+  text-decoration: none;
+}
 
 
