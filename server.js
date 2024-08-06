@@ -23,6 +23,10 @@ app.use(express.static('public'));
 // Routes
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
+
+    // Log received email and password for debugging
+    console.log('Login attempt:', { email, password });
+
     const { data: user, error } = await supabase
         .from('users')
         .select('*')
@@ -30,10 +34,18 @@ app.post('/login', async (req, res) => {
         .single();
 
     if (error || !user) {
+        console.error('User not found or error:', error);
         return res.status(401).send('Invalid email or password');
     }
 
+    // Log the retrieved user for debugging
+    console.log('Retrieved user:', user);
+
     const match = await bcrypt.compare(password, user.password);
+
+    // Log the result of the password comparison
+    console.log('Password match:', match);
+
     if (match) {
         req.session.userId = user.userid;
         res.redirect('/IndividualLandingPage.html');
@@ -44,7 +56,7 @@ app.post('/login', async (req, res) => {
 
 app.post('/createaccount', async (req, res) => {
     const { firstname, lastname, email, password, phone, category } = req.body;
-    
+
     // Log incoming data for debugging
     console.log('Received data:', { firstname, lastname, email, password, phone, category });
 
