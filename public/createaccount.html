@@ -49,9 +49,14 @@
                         <form id="serviceRequestForm" action="/submit_account_request" method="POST" style="margin-top: 11%;">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label for="name">Full name</label>
-                                <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+                                <input class="form-control" id="firstname" type="text" placeholder="Enter first name..." data-sb-validations="required" />
+                                <label for="name">First Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">First name is required.</div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="lastname" type="text" placeholder="Enter last name..." data-sb-validations="required" />
+                                <label for="name">Last Name</label>
+                                <div class="invalid-feedback" data-sb-feedback="name:required">Last name is required.</div>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
