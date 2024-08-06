@@ -22,38 +22,39 @@ app.use(express.static('public'));
 
 // Routes
 app.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    // Log received email and password for debugging
-    console.log('Login attempt:', { email, password });
+  console.log('Login attempt:', { email, password });
 
-    const { data: user, error } = await supabase
-        .from('users')
-        .select('*')
-        .eq('email', email)
-        .single();
+  const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
 
-    if (error || !user) {
-        console.error('User not found or error:', error);
-        return res.status(401).send('Invalid email or password');
-    }
+  if (error) {
+      console.error('Error retrieving user:', error);
+      return res.status(401).send('Invalid email or password');
+  }
 
-    // Log the retrieved user for debugging
-    console.log('Retrieved user:', user);
+  if (!user) {
+      console.error('No user found with this email');
+      return res.status(401).send('Invalid email or password');
+  }
 
-    const match = await bcrypt.compare(password, user.password);
+  console.log('Retrieved user:', user);
 
-    // Log the result of the password comparison
-    console.log('Password match:', match);
+  const match = await bcrypt.compare(password, user.password);
 
-    if (match) {
-        req.session.userId = user.userid;
-        res.redirect('/IndividualLandingPage.html');
-    } else {
-        res.status(401).send('Invalid email or password');
-    }
+  console.log('Password match:', match);
+
+  if (match) {
+      req.session.userId = user.userid;
+      res.redirect('/IndividualLandingPage.html');
+  } else {
+      res.status(401).send('Invalid email or password');
+  }
 });
-
 app.post('/createaccount', async (req, res) => {
     const { firstname, lastname, email, password, phone, category } = req.body;
 
