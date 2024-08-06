@@ -46,48 +46,48 @@
                     <!-- Mashead text and app badges-->
                     <div class="mb-5 mb-lg-0 text-center">
                         <h1 class="RequestPageHeader">Create Account</h1>
-                        <form id="serviceRequestForm" action="/submit_account_request" method="POST" style="margin-top: 11%;">
+                        <form id="serviceRequestForm" action="/createaccount" method="POST" style="margin-top: 11%;">
                             <!-- Name input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="firstname" type="text" placeholder="Enter first name..." data-sb-validations="required" />
+                                <input class="form-control" id="firstname" name="firstname" type="text" placeholder="Enter first name..." data-sb-validations="required" />
                                 <label for="name">First Name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">First name is required.</div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="lastname" type="text" placeholder="Enter last name..." data-sb-validations="required" />
+                                <input class="form-control" id="lastname" name="lastname" type="text" placeholder="Enter last name..." data-sb-validations="required" />
                                 <label for="name">Last Name</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Last name is required.</div>
                             </div>
                             <!-- Email address input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                                <input class="form-control" id="email" name="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
                                 <label for="email">Email address</label>
                                 <div class="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
                                 <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
                             </div>
+                            <!-- Phone number input-->
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="phone" name="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
+                                <label for="phone">Phone number</label>
+                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            </div>
                             <!-- Password input -->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password" type="password" placeholder="Password" required oninput="checkPasswordStrength()" />
+                                <input class="form-control" id="password" name="password" type="password" placeholder="Password" required oninput="checkPasswordStrength()" />
                                 <label for="password">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
                                 <div class="invalid-feedback" id="strength-feedback" style="display: none;">Password must be at least 8 characters, include uppercase, lowercase, number, and special character.</div>
                             </div>
                             <!-- Confirm Password input -->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="confirm-password" type="password" placeholder="Confirm Password" required oninput="checkPasswordMatch()" />
+                                <input class="form-control" id="confirm-password" name="confirm-password" type="password" placeholder="Confirm Password" required oninput="checkPasswordMatch()" />
                                 <label for="confirm-password">Confirm Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="confirm-password:required">Please confirm your password.</div>
                                 <div class="invalid-feedback" id="password-match-feedback">Passwords do not match.</div>
                             </div>
-                            <!-- Phone number input-->
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label for="phone">Phone number</label>
-                                <div class="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
-                            </div>
                             <!-- Category dropdown-->
                             <div class="form-floating mb-3">
-                                <select class="form-control" id="category" data-sb-validations="required">
+                                <select class="form-control" id="category" name="category" data-sb-validations="required">
                                     <option value="">I am a...</option>
                                     <option value="general">Business</option>
                                     <option value="support">Individual</option>

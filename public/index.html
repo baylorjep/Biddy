@@ -88,17 +88,17 @@
                         <!-- To make this form functional, sign up at-->
                         <!-- https://startbootstrap.com/solution/contact-forms-->
                         <!-- to get an API token!-->
-                        <form id="contactForm" action="/login" data-sb-form-api-token="API_TOKEN">
+                        <form id="contactForm" action="/login" method="POST" >
                             <!--   input-->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="username" type="text" placeholder="Enter your username..." data-sb-validations="required" />
-                                <label for="name">Username</label>
+                                <input class="form-control" id="email" name="email" type="text" placeholder="Enter your username..." data-sb-validations="required" />
+                                <label for="email">Email</label>
                                 <div class="invalid-feedback" data-sb-feedback="name:required">Username is required.</div>
                             </div>
     
                             <!-- Password input -->
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="password" type="password" placeholder="Password" required oninput="checkPasswordStrength()" />
+                                <input class="form-control" id="password" name="password" type="password" placeholder="Password" required oninput="checkPasswordStrength()" />
                                 <label for="password">Password</label>
                                 <div class="invalid-feedback" data-sb-feedback="password:required">A password is required.</div>
                                 <div class="invalid-feedback" id="strength-feedback" style="display: none;">Password must be at least 8 characters, include uppercase, lowercase, number, and special character.</div>
@@ -122,7 +122,7 @@
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                             <!-- Submit Button-->
-                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg disabled" id="submitButton" type="submit">Sign In</button></div>
+                            <div class="d-grid"><button class="btn btn-primary rounded-pill btn-lg" id="submitButton" type="submit">Sign In</button></div>
                         </form>
                     </div>
                 </div>
