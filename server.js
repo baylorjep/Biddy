@@ -45,7 +45,7 @@ app.post('/login', async (req, res) => {
 
         if (match) {
             req.session.userId = user.userid;
-            res.redirect('/IndividualLandingPage.html');
+            res.redirect('/Individual/IndividualLandingPage.html');
         } else {
             res.status(401).send('Invalid email or password');
         }
