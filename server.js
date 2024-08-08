@@ -22,62 +22,67 @@ app.use(express.static('public'));
 
 // Routes
 app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
+    const trimmedEmail = email.trim().toLowerCase();
 
-  console.log('Login attempt:', { email, password });
+    console.log('Login attempt:', { email: trimmedEmail, password });
 
-  const { data: user, error } = await supabase
-      .from('users')
-      .select('*')
-      .eq('email', email)
-      .single();
+    try {
+        const { data: user, error } = await supabase
+            .rpc('verify_user', { _email: trimmedEmail, _password: password })
+            .single();
 
-  if (error) {
-      console.error('Error retrieving user:', error);
-      return res.status(401).send('Invalid email or password');
-  }
+        console.log('Supabase function result:', { user, error });
 
-  if (!user) {
-      console.error('No user found with this email');
-      return res.status(401).send('Invalid email or password');
-  }
+        if (error || !user) {
+            console.error('Error retrieving user:', error);
+            return res.status(401).send('Invalid email or password');
+        }
 
-  console.log('Retrieved user:', user);
+        const match = await bcrypt.compare(password, user.password);
 
-  const match = await bcrypt.compare(password, user.password);
+        console.log('Password match:', match);
 
-  console.log('Password match:', match);
-
-  if (match) {
-      req.session.userId = user.userid;
-      res.redirect('/IndividualLandingPage.html');
-  } else {
-      res.status(401).send('Invalid email or password');
-  }
+        if (match) {
+            req.session.userId = user.userid;
+            res.redirect('/IndividualLandingPage.html');
+        } else {
+            res.status(401).send('Invalid email or password');
+        }
+    } catch (err) {
+        console.error('Unexpected error:', err);
+        res.status(500).send('Server error');
+    }
 });
+
 app.post('/createaccount', async (req, res) => {
     const { firstname, lastname, email, password, phone, category } = req.body;
 
-    // Log incoming data for debugging
     console.log('Received data:', { firstname, lastname, email, password, phone, category });
 
     try {
-        const hashedPassword = bcrypt.hashSync(password, saltRounds);  // Use synchronous hashing for simplicity
+        const hashedPassword = bcrypt.hashSync(password, saltRounds);
 
-        const { data, error } = await supabase
-            .from('users')
-            .insert([
-                { firstname, lastname, email, password: hashedPassword, phone, category }
-            ]);
+        const { data: userId, error } = await supabase
+            .rpc('create_user', {
+                _firstname: firstname,
+                _lastname: lastname,
+                _email: email,
+                _password: hashedPassword,
+                _phone: phone,
+                _category: category
+            });
 
         if (error) {
             console.error('Error inserting user into database:', error);
             return res.status(500).send('Error creating account');
         }
 
+        console.log('Inserted user ID:', userId);
+
         res.redirect('/');
     } catch (err) {
-        console.error('Error hashing password:', err);
+        console.error('Error creating user:', err);
         res.status(500).send('Server error');
     }
 });
